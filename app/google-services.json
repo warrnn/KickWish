@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "303307499705",
+    "project_id": "kickwish123",
+    "storage_bucket": "kickwish123.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303307499705:android:a985364e8ad08c17a75368",
+        "android_client_info": {
+          "package_name": "com.android.kickwish"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV4xPDsE64UtKe1ZazoV-wQa90aigozyM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
