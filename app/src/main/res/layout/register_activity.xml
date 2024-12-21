@@ -25,9 +25,9 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="60dp"
-        android:gravity="center"
+        android:gravity="start"
         android:text="Make A\nKick Wish"
         android:textColor="@color/text"
         android:textSize="36sp"
@@ -37,10 +37,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="413dp"
-        android:layout_height="558dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/rounded"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/rounded_top"
         android:backgroundTint="@color/neutral"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -152,8 +152,8 @@
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/primary"
             android:text="Sign Up"
-            android:textSize="16dp"
             android:textColor="@color/background"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etPassword" />
