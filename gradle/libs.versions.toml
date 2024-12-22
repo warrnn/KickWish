@@ -1,7 +1,8 @@
 [versions]
 agp = "8.5.2"
 kotlin = "1.9.0"
-coreKtx = "1.15.0"
+maps = "2.0.1"
+coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -11,6 +12,7 @@ activity = "1.9.3"
 constraintlayout = "2.2.0"
 googleGmsGoogleServices = "4.4.2"
 firebaseFirestore = "25.1.1"
+googleMaps = "19.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -22,9 +24,11 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
+google-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "googleMaps" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
+map-secret = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "maps" }
 

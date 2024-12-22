@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:id="@+id/itemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/TVShoeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Air Jordan 1 Retor High Dior"
+            android:textColor="@color/text"
+            android:textSize="14sp"
+            android:fontFamily="@font/cabin"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/TVDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cabin"
+            android:text="2 Desember 2024"
+            android:textColor="@color/secondary"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/starItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_star"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

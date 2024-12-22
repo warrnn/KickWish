@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".profileActivity"
+    android:background="@color/background">
+    
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/background"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title=""
+            app:navigationIcon="?attr/homeAsUpIndicator">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/kickwish"/>
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="26dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/profilePic"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_marginTop="104dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/dummy_profile" />
+
+            <TextView
+                android:id="@+id/TVnama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reyna Olivia Harrison"
+                android:fontFamily="@font/cabin"
+                android:textColor="@color/text"
+                android:textSize="28sp"
+                app:layout_constraintTop_toBottomOf="@+id/profilePic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:id="@+id/TVemail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="reynaolivia@gmail.com"
+                android:fontFamily="@font/cabin"
+                android:textColor="@color/secondary"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/TVnama"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <Button
+                android:id="@+id/btnEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Profile"
+                android:fontFamily="@font/cabin"
+                android:backgroundTint="@color/neutral"
+                app:layout_constraintTop_toBottomOf="@id/TVemail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:id="@+id/favTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Snearkers Recently Added to Favorites"
+                android:textColor="@color/text"
+                android:fontFamily="@font/cabin"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/btnEdit"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="28sp"/>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/favTitle"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"/>
+            
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/profileRecView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/divider"/>
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Log Out"
+                android:fontFamily="@font/cabin"
+                android:backgroundTint="@color/caution"
+                app:layout_constraintTop_toBottomOf="@id/profileRecView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"/>
+            
+            
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
