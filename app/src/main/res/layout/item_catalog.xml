@@ -4,20 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardBackgroundColor="#FFFFFF">
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="@color/background"
+        android:orientation="vertical"
         android:padding="8dp">
 
         <ImageView
             android:id="@+id/sneakerImage"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:background="@drawable/rounded"
             android:scaleType="centerCrop" />
 
         <TextView
@@ -25,19 +26,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColor="@color/text"
             android:fontFamily="@font/cabin"
-            android:textStyle="bold"
-            android:textSize="14sp" />
+            android:textColor="@color/text"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/sneakerPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/cabin"
             android:textColor="@color/primary"
-            android:textSize="16sp"
-            android:fontFamily="@font/cabin" />
-
+            android:textSize="16sp" />
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>
