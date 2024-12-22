@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">KickWish</string>
+    <string name="map_api_key">AIzaSyBoMVRS0tos4bFPpEHSL4bRIp9WyIcUJsQ</string>
     <string name="placeholder_description">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus

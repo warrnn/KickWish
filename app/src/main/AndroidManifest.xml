@@ -16,11 +16,20 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
+            android:name=".RegisterActivity"
+            android:exported="false"/>
+        <activity
             android:name=".mapActivity"
             android:exported="false" />
         <activity
             android:name=".profileActivity"
             android:exported="false" />
+        <activity
+            android:name=".DetailActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".CatalogActivity"
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
