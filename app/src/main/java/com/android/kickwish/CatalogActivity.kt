@@ -4,9 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.kickwish.R
-import com.android.kickwish.adapter.SneakerAdapter
-import com.android.kickwish.database.Sneaker
+import com.android.kickwish.Adapters.SneakerAdapter
+import com.android.kickwish.Models.Sneaker
 
 class CatalogActivity : AppCompatActivity() {
 
@@ -22,12 +21,12 @@ class CatalogActivity : AppCompatActivity() {
 
         // Sample data
         val sneakers = listOf(
-            Sneaker(1, "Air Jordan 1 Retro High Dior", 102600000.0, R.drawable.dummy_wish_item),
-            Sneaker(2, "Air Jordan 1 Retro High Dior", 102600000.0, R.drawable.dummy_wish_item),
-            Sneaker(3, "Air Jordan 1 Retro High Dior", 102600000.0, R.drawable.dummy_wish_item),
-            Sneaker(4, "Air Jordan 1 Retro High Dior", 102600000.0, R.drawable.dummy_wish_item),
-            Sneaker(5, "Air Jordan 1 Retro High Dior", 102600000.0, R.drawable.dummy_wish_item),
-            Sneaker(6, "Air Jordan 1 Retro High Dior", 102600000.0, R.drawable.dummy_wish_item)
+            Sneaker(1, "Air Jordan 1 Retro High Dior", 102600000.0, R.drawable.jordan_dior),
+            Sneaker(2, "Air Jordan 1 Retro High Dior", 102600000.0, R.drawable.jordan_dior),
+            Sneaker(3, "Air Jordan 1 Retro High Dior", 102600000.0, R.drawable.jordan_dior),
+            Sneaker(4, "Air Jordan 1 Retro High Dior", 102600000.0, R.drawable.jordan_dior),
+            Sneaker(5, "Air Jordan 1 Retro High Dior", 102600000.0, R.drawable.jordan_dior),
+            Sneaker(6, "Air Jordan 1 Retro High Dior", 102600000.0, R.drawable.jordan_dior)
         )
 
         sneakerAdapter = SneakerAdapter(sneakers)
