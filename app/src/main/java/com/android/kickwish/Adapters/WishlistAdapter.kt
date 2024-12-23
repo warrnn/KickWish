@@ -3,6 +3,7 @@ package com.android.kickwish.Adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -29,8 +30,8 @@ class WishlistAdapter(private val wishes: MutableList<Wish>) :
         var _ivWishItem = itemView.findViewById<ImageView>(R.id.ivWishItem)
         var _tvSneakersName = itemView.findViewById<TextView>(R.id.tvSneakersName)
         var _tvSneakersPrice = itemView.findViewById<TextView>(R.id.tvSneakersPrice)
-        var _btnDelete = itemView.findViewById<TextView>(R.id.btnDelete)
-        var _btnExplore = itemView.findViewById<TextView>(R.id.btnExplore)
+        var _btnDelete = itemView.findViewById<ImageButton>(R.id.btnDelete)
+        var _btnExplore = itemView.findViewById<ImageButton>(R.id.btnExplore)
     }
 
     override fun onCreateViewHolder(

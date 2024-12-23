@@ -26,7 +26,9 @@ class ProfileActivity : AppCompatActivity() {
             insets
         }
 
-        initializeWishlist()
+        setupAppBar()
+
+        initializeProfile()
 
         arrWishes = mutableListOf(
             Wish(
@@ -49,9 +51,22 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
-    fun initializeWishlist(){
+    fun initializeProfile(){
         this._rvProfile = findViewById(R.id.profileRecView)
         this.profileAdapter = ProfileAdapter(arrWishes)
         this._rvProfile.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun setupAppBar() {
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

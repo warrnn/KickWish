@@ -32,12 +32,12 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        setupToolbar()
+        setupAppBar()
         displaySneakerDetails()
         setupWishlistButton()
     }
 
-    private fun setupToolbar() {
+    private fun setupAppBar() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)

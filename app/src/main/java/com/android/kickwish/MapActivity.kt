@@ -23,6 +23,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             insets
         }
 
+        setupAppBar()
+
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
 
         mapFragment?.getMapAsync(this)
@@ -35,5 +37,18 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         val markerOptions = MarkerOptions()
         markerOptions.position(latLng)
         map.addMarker(markerOptions)
+    }
+
+    private fun setupAppBar() {
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

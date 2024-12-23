@@ -16,6 +16,8 @@ class CatalogActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_catalog)
 
+        setupAppBar()
+
         recyclerView = findViewById(R.id.sneakersRecyclerView)
         recyclerView.layoutManager = GridLayoutManager(this, 2)
 
@@ -31,5 +33,18 @@ class CatalogActivity : AppCompatActivity() {
 
         sneakerAdapter = SneakerAdapter(sneakers)
         recyclerView.adapter = sneakerAdapter
+    }
+
+    private fun setupAppBar() {
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

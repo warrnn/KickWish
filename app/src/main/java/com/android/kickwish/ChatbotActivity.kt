@@ -49,6 +49,8 @@ class ChatbotActivity : AppCompatActivity() {
             insets
         }
 
+        setupAppBar()
+
         initializeChatbotActivity()
         initializeAdapterToRecyclerView()
 
@@ -163,6 +165,19 @@ class ChatbotActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun setupAppBar() {
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     companion object {

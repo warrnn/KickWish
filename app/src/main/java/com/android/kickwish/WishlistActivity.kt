@@ -26,6 +26,8 @@ class WishlistActivity : AppCompatActivity() {
             insets
         }
 
+        setupAppBar()
+
         initializeWishlist()
 
         arrWishes = mutableListOf(
@@ -51,5 +53,18 @@ class WishlistActivity : AppCompatActivity() {
         this._rvWishlist = findViewById(R.id.rvWishlist)
         this.wishlistAdapter = WishlistAdapter(arrWishes)
         this._rvWishlist.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun setupAppBar() {
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
