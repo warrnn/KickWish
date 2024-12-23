@@ -146,7 +146,7 @@
             app:layout_constraintWidth_percent="0.8" />
 
         <Button
-            android:id="@+id/btnSignUp"
+            android:id="@+id/btnLogIn"
             android:layout_width="180dp"
             android:layout_height="56dp"
             android:layout_marginTop="24dp"
@@ -168,7 +168,7 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnSignUp" />
+            app:layout_constraintTop_toBottomOf="@id/btnLogIn" />
 
         <TextView
             android:id="@+id/tvSignUp"

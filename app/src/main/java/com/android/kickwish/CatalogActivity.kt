@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.kickwish.R
-import com.android.kickwish.adapter.SneakerAdapter
-import com.android.kickwish.database.Sneaker
+import com.android.kickwish.Adapters.SneakerAdapter
+import com.android.kickwish.Models.Sneaker
 import com.google.firebase.database.*
 import com.google.firebase.database.DatabaseReference
 

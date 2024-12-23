@@ -1,4 +1,4 @@
-package com.android.kickwish.adapter
+package com.android.kickwish.Adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.kickwish.R
 import com.android.kickwish.DetailActivity
-import com.android.kickwish.database.Sneaker
+import com.android.kickwish.Models.Sneaker
 import java.text.NumberFormat
 import java.util.Locale
 

@@ -1,4 +1,4 @@
-package com.android.kickwish.database
+package com.android.kickwish.Models
 
 data class Sneaker(
     val id: Int,
