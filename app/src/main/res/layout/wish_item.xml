@@ -49,6 +49,7 @@
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/caution"
         android:text="Delete"
+        android:textColor="@color/text"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnExplore" />
