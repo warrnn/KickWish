@@ -49,7 +49,7 @@ class ChatbotActivity : AppCompatActivity() {
             insets
         }
 
-        setupAppBar()
+        setupToolBar()
 
         initializeChatbotActivity()
         initializeAdapterToRecyclerView()
@@ -167,7 +167,7 @@ class ChatbotActivity : AppCompatActivity() {
         })
     }
 
-    private fun setupAppBar() {
+    private fun setupToolBar() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)

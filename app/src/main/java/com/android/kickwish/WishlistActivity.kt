@@ -26,7 +26,7 @@ class WishlistActivity : AppCompatActivity() {
             insets
         }
 
-        setupAppBar()
+        setupToolBar()
 
         initializeWishlist()
 
@@ -55,7 +55,7 @@ class WishlistActivity : AppCompatActivity() {
         this._rvWishlist.layoutManager = LinearLayoutManager(this)
     }
 
-    private fun setupAppBar() {
+    private fun setupToolBar() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)

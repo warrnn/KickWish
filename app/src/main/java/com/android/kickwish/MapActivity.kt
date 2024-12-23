@@ -23,7 +23,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             insets
         }
 
-        setupAppBar()
+        setupToolBar()
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
 
@@ -39,7 +39,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         map.addMarker(markerOptions)
     }
 
-    private fun setupAppBar() {
+    private fun setupToolBar() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)

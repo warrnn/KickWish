@@ -26,7 +26,7 @@ class ProfileActivity : AppCompatActivity() {
             insets
         }
 
-        setupAppBar()
+        setupToolBar()
 
         initializeProfile()
 
@@ -57,7 +57,7 @@ class ProfileActivity : AppCompatActivity() {
         this._rvProfile.layoutManager = LinearLayoutManager(this)
     }
 
-    private fun setupAppBar() {
+    private fun setupToolBar() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)

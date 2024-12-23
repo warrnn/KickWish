@@ -16,7 +16,7 @@ class CatalogActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_catalog)
 
-        setupAppBar()
+        setupToolBar()
 
         recyclerView = findViewById(R.id.sneakersRecyclerView)
         recyclerView.layoutManager = GridLayoutManager(this, 2)
@@ -35,7 +35,7 @@ class CatalogActivity : AppCompatActivity() {
         recyclerView.adapter = sneakerAdapter
     }
 
-    private fun setupAppBar() {
+    private fun setupToolBar() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
