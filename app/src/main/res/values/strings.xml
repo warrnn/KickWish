@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">KickWish</string>
     <string name="map_api_key">AIzaSyBoMVRS0tos4bFPpEHSL4bRIp9WyIcUJsQ</string>
+    <string name="openai_api_key">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</string>
     <string name="placeholder_description">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
