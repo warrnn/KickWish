@@ -44,7 +44,6 @@ class SneakerAdapter(private val sneakers: List<Sneaker>) :
             val context = holder.itemView.context
             val intent = DetailActivity.createIntent(
                 context,
-                sneaker.id,
                 sneaker.name,
                 sneaker.price,
                 sneaker.imageUrl,

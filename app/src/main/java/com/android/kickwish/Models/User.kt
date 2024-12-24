@@ -1,7 +1,7 @@
-package com.android.kickwish.Data
+package com.android.kickwish.Models
 
 data class User(
-    var nama: String,
+    var name: String,
     var email: String,
     var password: String
 )

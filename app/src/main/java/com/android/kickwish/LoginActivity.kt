@@ -51,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         // Periksa apakah email dan password cocok dengan data yang ada di Firestore
-        db.collection("DataRegister")
+        db.collection("users")
             .whereEqualTo("email", email)
             .whereEqualTo("password", password)
             .get()
@@ -60,12 +60,12 @@ class LoginActivity : AppCompatActivity() {
                     for (document in documents) {
                         // Gunakan Firebase Document ID sebagai userId
                         val userId = document.id // ID dokumen Firestore
-                        val username = document.getString("nama") ?: "Tidak Diketahui"
+                        val username = document.getString("name") ?: "Unknown"
 
                         // Tampilkan toast jika login berhasil
                         Toast.makeText(
                             this,
-                            "Login Berhasil\nNama: $username",
+                            "Login Successful! Hello! $username",
                             Toast.LENGTH_SHORT
                         ).show()
 
@@ -81,12 +81,12 @@ class LoginActivity : AppCompatActivity() {
                     }
                 } else {
                     // Jika email atau password salah
-                    Toast.makeText(this, "Email atau Password salah", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Email or Password is Incorrect", Toast.LENGTH_SHORT).show()
                 }
             }
             .addOnFailureListener { exception ->
                 // Menangani kesalahan saat mengakses Firestore
-                Toast.makeText(this, "Kesalahan: ${exception.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -96,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
         this._etEmail = findViewById(R.id.etEmail)
         this._etPassword = findViewById(R.id.etPassword)
 
-        _btnLogIn.setOnClickListener{
+        _btnLogIn.setOnClickListener {
             loginUser()
         }
     }

@@ -21,7 +21,6 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
     companion object {
-        private const val EXTRA_SNEAKER_ID = "extra_sneaker_id"
         private const val EXTRA_SNEAKER_NAME = "extra_sneaker_name"
         private const val EXTRA_SNEAKER_PRICE = "extra_sneaker_price"
         private const val EXTRA_SNEAKER_IMAGE = "extra_sneaker_image"
@@ -29,17 +28,15 @@ class DetailActivity : AppCompatActivity() {
 
         fun createIntent(
             context: Context,
-            id: Int,
             name: String,
             price: Double,
-            imageResId: String,
+            imageSrc: String,
             description: String
         ): Intent {
             return Intent(context, DetailActivity::class.java).apply {
-                putExtra(EXTRA_SNEAKER_ID, id)
                 putExtra(EXTRA_SNEAKER_NAME, name)
                 putExtra(EXTRA_SNEAKER_PRICE, price)
-                putExtra(EXTRA_SNEAKER_IMAGE, imageResId)
+                putExtra(EXTRA_SNEAKER_IMAGE, imageSrc)
                 putExtra(EXTRA_SNEAKER_DESC, description)
             }
         }
@@ -107,11 +104,9 @@ class DetailActivity : AppCompatActivity() {
             return
         }
 
-        val sneakerId = intent.getIntExtra(EXTRA_SNEAKER_ID, -1)
-
         db.collection("wishlists")
             .whereEqualTo("userId", currentUser.uid)
-            .whereEqualTo("sneakerId", sneakerId)
+            .whereEqualTo("name", intent.getStringExtra(EXTRA_SNEAKER_NAME))
             .get()
             .addOnSuccessListener { documents ->
                 if (!documents.isEmpty) {
@@ -133,7 +128,6 @@ class DetailActivity : AppCompatActivity() {
             return
         }
 
-        val sneakerId = intent.getIntExtra(EXTRA_SNEAKER_ID, -1)
         val sneakerName = intent.getStringExtra(EXTRA_SNEAKER_NAME)
         val sneakerPrice = intent.getDoubleExtra(EXTRA_SNEAKER_PRICE, 0.0)
         val sneakerImage = intent.getStringExtra(EXTRA_SNEAKER_IMAGE)
@@ -141,21 +135,20 @@ class DetailActivity : AppCompatActivity() {
         // Check if already in wishlist
         db.collection("wishlists")
             .whereEqualTo("userId", currentUser.uid)
-            .whereEqualTo("sneakerId", sneakerId)
+            .whereEqualTo("name", sneakerName)
             .get()
             .addOnSuccessListener { documents ->
                 if (documents.isEmpty) {
                     // Add to wishlist
                     val wishlistItem = hashMapOf(
                         "userId" to currentUser.uid,
-                        "sneakerId" to sneakerId,
                         "sneakerName" to sneakerName,
                         "sneakerPrice" to sneakerPrice,
                         "sneakerImage" to sneakerImage,
                         "timestamp" to FieldValue.serverTimestamp()
                     )
 
-                    db.collection("wishlists")
+                    db.collection("wishlist")
                         .add(wishlistItem)
                         .addOnSuccessListener {
                             Toast.makeText(this, "Added to wishlist", Toast.LENGTH_SHORT).show()

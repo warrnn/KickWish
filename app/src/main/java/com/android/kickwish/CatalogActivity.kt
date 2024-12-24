@@ -88,7 +88,6 @@ class CatalogActivity : AppCompatActivity() {
 
                 for (document in result) {
                     val data = Sneaker(
-                        document.data["id"].toString().toInt(),
                         document.data["name"].toString(),
                         document.data["price"].toString().toDouble(),
                         document.data["imageURL"].toString(),
