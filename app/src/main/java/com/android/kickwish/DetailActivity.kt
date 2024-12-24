@@ -6,12 +6,19 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 import java.util.Locale
 
 class DetailActivity : AppCompatActivity() {
+
+    private lateinit var db: FirebaseFirestore
+    private lateinit var auth: FirebaseAuth
 
     companion object {
         private const val EXTRA_SNEAKER_ID = "extra_sneaker_id"
@@ -41,6 +48,10 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+
+        // Initialize Firebase instances
+        db = FirebaseFirestore.getInstance()
+        auth = FirebaseAuth.getInstance()
 
         setupToolBar()
         displaySneakerDetails()
@@ -80,9 +91,96 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setupWishlistButton() {
         val wishlistButton: Button = findViewById(R.id.addToWishlistButton)
+
+        // Check if sneaker is already in wishlist
+        checkWishlistStatus(wishlistButton)
+
         wishlistButton.setOnClickListener {
-            // TODO: Implement wishlist functionality
+            addToWishlist(wishlistButton)
         }
+    }
+
+    private fun checkWishlistStatus(button: Button) {
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            button.text = "Login to Add to Wishlist"
+            return
+        }
+
+        val sneakerId = intent.getIntExtra(EXTRA_SNEAKER_ID, -1)
+
+        db.collection("wishlists")
+            .whereEqualTo("userId", currentUser.uid)
+            .whereEqualTo("sneakerId", sneakerId)
+            .get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    button.text = "Remove from Wishlist"
+                } else {
+                    button.text = "Add to Wishlist"
+                }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error checking wishlist status: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun addToWishlist(button: Button) {
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            Toast.makeText(this, "Please login first", Toast.LENGTH_SHORT).show()
+            // TODO: Navigate to login screen
+            return
+        }
+
+        val sneakerId = intent.getIntExtra(EXTRA_SNEAKER_ID, -1)
+        val sneakerName = intent.getStringExtra(EXTRA_SNEAKER_NAME)
+        val sneakerPrice = intent.getDoubleExtra(EXTRA_SNEAKER_PRICE, 0.0)
+        val sneakerImage = intent.getStringExtra(EXTRA_SNEAKER_IMAGE)
+
+        // Check if already in wishlist
+        db.collection("wishlists")
+            .whereEqualTo("userId", currentUser.uid)
+            .whereEqualTo("sneakerId", sneakerId)
+            .get()
+            .addOnSuccessListener { documents ->
+                if (documents.isEmpty) {
+                    // Add to wishlist
+                    val wishlistItem = hashMapOf(
+                        "userId" to currentUser.uid,
+                        "sneakerId" to sneakerId,
+                        "sneakerName" to sneakerName,
+                        "sneakerPrice" to sneakerPrice,
+                        "sneakerImage" to sneakerImage,
+                        "timestamp" to FieldValue.serverTimestamp()
+                    )
+
+                    db.collection("wishlists")
+                        .add(wishlistItem)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Added to wishlist", Toast.LENGTH_SHORT).show()
+                            button.text = "Remove from Wishlist"
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(this, "Error adding to wishlist: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
+                } else {
+                    // Remove from wishlist
+                    val document = documents.documents[0]
+                    db.collection("wishlists").document(document.id)
+                        .delete()
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Removed from wishlist", Toast.LENGTH_SHORT).show()
+                            button.text = "Add to Wishlist"
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(this, "Error removing from wishlist: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
+                }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     override fun onSupportNavigateUp(): Boolean {
