@@ -24,8 +24,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:background="@color/neutral"
+                android:fontFamily="@font/cabin"
                 android:queryHint="Search Kicks"
-                app:iconifiedByDefault="false"/>
+                app:iconifiedByDefault="false" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -35,8 +36,8 @@
         android:id="@+id/sneakersRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
         android:clipToPadding="false"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        android:padding="8dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

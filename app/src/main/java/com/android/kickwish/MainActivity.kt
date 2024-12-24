@@ -33,7 +33,9 @@ class MainActivity : AppCompatActivity() {
             )
         }
         _gotoAICard.setOnClickListener {
-
+            startActivity(
+                Intent(this, ChatbotActivity::class.java)
+            )
         }
         _gotoWishlistCard.setOnClickListener {
             startActivity(

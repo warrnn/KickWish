@@ -4,5 +4,6 @@ data class Sneaker(
     val id: Int,
     val name: String,
     val price: Double,
-    val imageUrl: Int,
+    val imageUrl: String,
+    val description: String
 )

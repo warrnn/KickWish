@@ -45,10 +45,11 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.firestore)
     implementation(libs.google.maps)
-    implementation(libs.firebase.database.ktx)
+    implementation(libs.cronet.embedded)
+    implementation(libs.firebase.auth.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation("com.github.bumptech.glide:glide:4.16.0")
-
+    implementation(libs.okhttp)
+    implementation(libs.picasso)
 }
