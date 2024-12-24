@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.SimpleAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -29,10 +28,16 @@ class RegisterActivity : AppCompatActivity() {
         _etEmail = findViewById(R.id.etEmail)
         _etPassword = findViewById(R.id.etPassword)
         val _btnSignUp = findViewById<Button>(R.id.btnSignUp)
-        val _tvLogin = findViewById<TextView>(R.id.tvLogIn) // TextView untuk login
+        val _tvLogin = findViewById<TextView>(R.id.tvLogIn)
 
         fun addData(name: String, email: String, password: String) {
             val dataBaru = User(name, email, password)
+
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                // Menampilkan toast dengan error jika salah satu input kosong
+                Toast.makeText(this, "Nama,Email atau Password tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                return
+            }
             db.collection("users")
                 .add(dataBaru)
                 .addOnSuccessListener {

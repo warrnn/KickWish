@@ -48,11 +48,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         setupToolBar()
         initializeMaps()
 
-        arrMaps = mutableListOf(
-            Store(1, "Store 1", "This is store 1", "112.747009", "-7.330517"),
-            Store(2, "Store 2", "This is store 2", "112.750916", "-7.344457"),
-            Store(3, "Store 3", "This is store 3", "112.697112", "-7.344807"),
-        )
+//        arrMaps = mutableListOf(
+//            Store(1, "Store 1", "This is store 1", "112.747009", "-7.330517"),
+//            Store(2, "Store 2", "This is store 2", "112.750916", "-7.344457"),
+//            Store(3, "Store 3", "This is store 3", "112.697112", "-7.344807"),
+//        )
         mapAdapter.loadData(arrMaps)
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
