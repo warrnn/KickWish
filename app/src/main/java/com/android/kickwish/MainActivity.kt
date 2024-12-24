@@ -2,6 +2,7 @@ package com.android.kickwish
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -52,7 +53,6 @@ class MainActivity : AppCompatActivity() {
                 Intent(this, ProfileActivity::class.java)
             )
         }
-
         // Lanjut sini ya ges ya
     }
 
