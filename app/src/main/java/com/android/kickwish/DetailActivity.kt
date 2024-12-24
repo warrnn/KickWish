@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -17,13 +18,22 @@ class DetailActivity : AppCompatActivity() {
         private const val EXTRA_SNEAKER_NAME = "extra_sneaker_name"
         private const val EXTRA_SNEAKER_PRICE = "extra_sneaker_price"
         private const val EXTRA_SNEAKER_IMAGE = "extra_sneaker_image"
+        private const val EXTRA_SNEAKER_DESC = "extra_sneaker_desc"
 
-        fun createIntent(context: Context, id: Int, name: String, price: Double, imageResId: Int): Intent {
+        fun createIntent(
+            context: Context,
+            id: Int,
+            name: String,
+            price: Double,
+            imageResId: String,
+            description: String
+        ): Intent {
             return Intent(context, DetailActivity::class.java).apply {
                 putExtra(EXTRA_SNEAKER_ID, id)
                 putExtra(EXTRA_SNEAKER_NAME, name)
                 putExtra(EXTRA_SNEAKER_PRICE, price)
                 putExtra(EXTRA_SNEAKER_IMAGE, imageResId)
+                putExtra(EXTRA_SNEAKER_DESC, description)
             }
         }
     }
@@ -52,7 +62,9 @@ class DetailActivity : AppCompatActivity() {
         val sneakerDescription: TextView = findViewById(R.id.sneakerDescription)
 
         // Set image
-        sneakerImage.setImageResource(intent.getIntExtra(EXTRA_SNEAKER_IMAGE, 0))
+        Picasso.get()
+            .load(intent.getStringExtra(EXTRA_SNEAKER_IMAGE))
+            .into(sneakerImage)
 
         // Set name
         sneakerName.text = intent.getStringExtra(EXTRA_SNEAKER_NAME)
@@ -63,7 +75,7 @@ class DetailActivity : AppCompatActivity() {
         sneakerPrice.text = formatter.format(price)
 
         // Set description (placeholder text)
-        sneakerDescription.text = getString(R.string.placeholder_description)
+        sneakerDescription.text = intent.getStringExtra(EXTRA_SNEAKER_DESC)
     }
 
     private fun setupWishlistButton() {

@@ -13,19 +13,22 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/sneakerImage"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@drawable/rounded"
-            android:scaleType="centerCrop" />
+            android:background="@color/text"
+            android:scaleType="centerInside"
+            app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
         <TextView
             android:id="@+id/sneakerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:ellipsize="end"
             android:fontFamily="@font/cabin"
+            android:maxLines="1"
             android:textColor="@color/text"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -36,6 +39,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/cabin"
             android:textColor="@color/primary"
-            android:textSize="16sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -30,20 +30,20 @@ class ProfileActivity : AppCompatActivity() {
 
         initializeProfile()
 
-        arrWishes = mutableListOf(
-            Wish(
-                Sneaker(1, "Air Jordan 1 Retro High Dior", 102600000.0, R.drawable.jordan_dior),
-                1
-            ),
-            Wish(
-                Sneaker(2, "Air Jordan 1 Retro High Dior", 102600000.0, R.drawable.jordan_dior),
-                1
-            ),
-            Wish(
-                Sneaker(3, "Air Jordan 1 Retro High Dior", 102600000.0, R.drawable.jordan_dior),
-                1
-            ),
-        )
+//        arrWishes = mutableListOf(
+//            Wish(
+//                Sneaker(1, "Air Jordan 1 Retro High Dior", 102600000.0, "https://cdn-images.farfetch-contents.com/15/62/45/04/15624504_28291154_1000.jpg"),
+//                1
+//            ),
+//            Wish(
+//                Sneaker(2, "Air Jordan 1 Retro High Dior", 102600000.0, "https://cdn-images.farfetch-contents.com/15/62/45/04/15624504_28291154_1000.jpg"),
+//                1
+//            ),
+//            Wish(
+//                Sneaker(3, "Air Jordan 1 Retro High Dior", 102600000.0, "https://cdn-images.farfetch-contents.com/15/62/45/04/15624504_28291154_1000.jpg"),
+//                1
+//            ),
+//        )
 
         _rvProfile.adapter = profileAdapter
         profileAdapter.loadData(arrWishes)
