@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvWelcome"
+        android:id="@+id/tvUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -39,7 +39,7 @@
         android:background="@drawable/rounded"
         android:backgroundTint="@color/neutral"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvWelcome">
+        app:layout_constraintTop_toBottomOf="@+id/tvUser">
 
         <TextView
             android:id="@+id/tvFind"
