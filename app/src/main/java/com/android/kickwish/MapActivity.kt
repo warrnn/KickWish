@@ -1,5 +1,7 @@
 package com.android.kickwish
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,8 +13,14 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
+    private lateinit var directionBTN: FloatingActionButton
+
+    private var longitude =  "112.73732"
+    private var latitude =  "-7.3392457"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,6 +31,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             insets
         }
 
+        directionBTN = findViewById(R.id.fabDir)
+
+        directionBTN.setOnClickListener {
+            navigateToMap(latitude, longitude)
+        }
+
         setupToolBar()
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
@@ -30,8 +44,16 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment?.getMapAsync(this)
     }
 
+    private fun navigateToMap(destinationLat: String, destinationLong: String){
+        val mapUri = Uri.parse("https://maps.google.com/maps?daddr=$destinationLat,$destinationLong")
+
+        val intent = Intent(Intent.ACTION_VIEW, mapUri)
+
+        startActivity(intent)
+    }
+
     override fun onMapReady(map: GoogleMap) {
-        val latLng = LatLng(-7.3392457,112.73732)
+        val latLng = LatLng(latitude.toDouble(),longitude.toDouble())
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 19f))
 
         val markerOptions = MarkerOptions()
