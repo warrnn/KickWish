@@ -18,7 +18,7 @@ class DetailActivity : AppCompatActivity() {
         private const val EXTRA_SNEAKER_PRICE = "extra_sneaker_price"
         private const val EXTRA_SNEAKER_IMAGE = "extra_sneaker_image"
 
-        fun createIntent(context: Context, id: Int, name: String, price: Double, imageResId: Int): Intent {
+        fun createIntent(context: Context, id: Int, name: String, price: Double, imageResId: String): Intent {
             return Intent(context, DetailActivity::class.java).apply {
                 putExtra(EXTRA_SNEAKER_ID, id)
                 putExtra(EXTRA_SNEAKER_NAME, name)

@@ -2,20 +2,20 @@ package com.android.kickwish
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.kickwish.R
 import com.android.kickwish.Adapters.SneakerAdapter
 import com.android.kickwish.Models.Sneaker
-import com.google.firebase.database.*
-import com.google.firebase.database.DatabaseReference
+import com.google.firebase.firestore.FirebaseFirestore
 
 class CatalogActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var sneakerAdapter: SneakerAdapter
-    private lateinit var database: DatabaseReference
+    private val sneakers = mutableListOf<Sneaker>() // List to hold sneakers
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,28 +24,35 @@ class CatalogActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.sneakersRecyclerView)
         recyclerView.layoutManager = GridLayoutManager(this, 2)
 
-        // Initialize Firebase Database
-        database = FirebaseDatabase.getInstance().getReference("sneakers")
+        // Initialize Firestore
+        firestore = FirebaseFirestore.getInstance()
 
-        // Fetch data from Firebase
-        fetchSneakersFromFirebase()
+        // Initialize the adapter with an empty list
+        sneakerAdapter = SneakerAdapter(sneakers)
+        recyclerView.adapter = sneakerAdapter
+
+        // Fetch data from Firestore
+        fetchSneakersFromFirestore()
     }
 
-    private fun fetchSneakersFromFirebase() {
-        database.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val sneakers = mutableListOf<Sneaker>()
-                for (sneakerSnapshot in snapshot.children) {
-                    val sneaker = sneakerSnapshot.getValue(Sneaker::class.java)
-                    sneaker?.let { sneakers.add(it) }
+    private fun fetchSneakersFromFirestore() {
+        firestore.collection("sneakers")
+            .get()
+            .addOnSuccessListener { documents ->
+                sneakers.clear() // Clear the list before adding new data
+                for (document in documents) {
+                    val sneaker = document.toObject(Sneaker::class.java)
+                    sneakers.add(sneaker)
                 }
-                sneakerAdapter = SneakerAdapter(sneakers)
-                recyclerView.adapter = sneakerAdapter
+                if (sneakers.isEmpty()) {
+                    Toast.makeText(this@CatalogActivity, "No sneakers found", Toast.LENGTH_SHORT).show()
+                } else {
+                    sneakerAdapter.notifyDataSetChanged() // Notify adapter of data change
+                }
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.e("CatalogActivity", "Failed to read sneakers", error.toException())
+            .addOnFailureListener { exception ->
+                Log.e("CatalogActivity", "Failed to read sneakers", exception)
+                Toast.makeText(this@CatalogActivity, "Failed to load sneakers", Toast.LENGTH_SHORT).show()
             }
-        })
     }
 }
