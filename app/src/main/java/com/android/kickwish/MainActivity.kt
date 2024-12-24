@@ -2,6 +2,7 @@ package com.android.kickwish
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var _gotoWishlistCard: ConstraintLayout
     private lateinit var _gotoMapCard: ConstraintLayout
     private lateinit var _gotoProfileCard: ConstraintLayout
+    private lateinit var _tvUsername: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +55,9 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        // Lanjut sini ya ges ya
+        val sharedPreferences = getSharedPreferences("userData", MODE_PRIVATE)
+        val username = sharedPreferences.getString("username", "user")
+        _tvUsername.text = "Hello, $username!"
     }
 
     fun initializeMain() {
@@ -62,5 +66,6 @@ class MainActivity : AppCompatActivity() {
         this._gotoWishlistCard = findViewById(R.id.card3)
         this._gotoMapCard = findViewById(R.id.card4)
         this._gotoProfileCard = findViewById(R.id.card5)
+        this._tvUsername = findViewById(R.id.tvUser)
     }
 }
