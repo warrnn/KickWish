@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.kickwish.R
 import com.android.kickwish.DetailActivity
 import com.android.kickwish.Models.Sneaker
+import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -29,7 +30,9 @@ class SneakerAdapter(private val sneakers: List<Sneaker>) :
 
     override fun onBindViewHolder(holder: SneakerViewHolder, position: Int) {
         val sneaker = sneakers[position]
-        holder.imageView.setImageResource(sneaker.imageUrl)
+        Picasso.get()
+            .load(sneaker.imageUrl)
+            .into(holder.imageView)
         holder.nameText.text = sneaker.name
 
         // Format price in IDR
@@ -44,7 +47,8 @@ class SneakerAdapter(private val sneakers: List<Sneaker>) :
                 sneaker.id,
                 sneaker.name,
                 sneaker.price,
-                sneaker.imageUrl
+                sneaker.imageUrl,
+                sneaker.description
             )
             context.startActivity(intent)
         }

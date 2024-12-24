@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.kickwish.Models.Wish
 import com.android.kickwish.R
+import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -45,22 +46,24 @@ class WishlistAdapter(private val wishes: MutableList<Wish>) :
     }
 
     override fun onBindViewHolder(holder: WishlistAdapter.WishViewHolder, position: Int) {
-        var this_wish = wishes[position]
+        var wish = wishes[position]
 
-        holder._ivWishItem.setImageResource(this_wish.sneaker.imageUrl)
-        holder._tvSneakersName.setText(this_wish.sneaker.name)
+        Picasso.get()
+            .load(wish.sneaker.imageUrl)
+            .into(holder._ivWishItem)
+        holder._tvSneakersName.setText(wish.sneaker.name)
         holder._tvSneakersPrice.setText(
             NumberFormat.getCurrencyInstance(
                 Locale("id", "ID")
-            ).format(this_wish.sneaker.price)
+            ).format(wish.sneaker.price)
         )
 
         holder._btnDelete.setOnClickListener {
-            onItemClickCall.deleteWish(this_wish)
+            onItemClickCall.deleteWish(wish)
         }
 
         holder._btnExplore.setOnClickListener {
-            onItemClickCall.exploreWish(this_wish)
+            onItemClickCall.exploreWish(wish)
         }
     }
 

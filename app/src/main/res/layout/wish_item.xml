@@ -7,14 +7,16 @@
     android:background="@color/background"
     android:padding="8dp">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivWishItem"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:background="@drawable/rounded"
+        android:background="@color/text"
+        android:scaleType="centerInside"
         android:src="@drawable/jordan_dior"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
     <TextView
         android:id="@+id/tvSneakersName"
@@ -22,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:ellipsize="end"
+        android:fontFamily="@font/cabin"
         android:maxWidth="230dp"
         android:maxLines="1"
         android:text="Sneaker Name"
@@ -30,12 +33,12 @@
         app:layout_constraintStart_toEndOf="@id/ivWishItem"
         app:layout_constraintTop_toTopOf="@id/ivWishItem" />
 
-
     <TextView
         android:id="@+id/tvSneakersPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/cabin"
         android:text="IDR 123,456,789"
         android:textColor="@color/primary"
         android:textSize="12sp"
