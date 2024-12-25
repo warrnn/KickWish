@@ -3,10 +3,13 @@ package com.android.kickwish
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.CalendarContract.Colors
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,6 +48,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         directionBTN = findViewById(R.id.fabDir)
         searchBar = findViewById(R.id.searchBar)
+        val searchTextView = searchBar.findViewById<TextView>(androidx.appcompat.R.id.search_src_text)
+        searchTextView.setTextColor(ContextCompat.getColor(this, R.color.primary))
+        searchTextView.setHintTextColor(ContextCompat.getColor(this, R.color.secondary))
         setupToolBar()
         initializeMaps()
 
