@@ -32,6 +32,7 @@
             android:fontFamily="@font/cabin"
             android:text="Short Description"
             android:textColor="@color/secondary"
+            android:layout_marginEnd="16dp"
             android:textSize="14sp" />
     </LinearLayout>
 
