@@ -43,14 +43,11 @@ class LoginActivity : AppCompatActivity() {
         val email = _etEmail.text.toString().trim()
         val password = _etPassword.text.toString().trim()
 
-        // Periksa apakah email atau password kosong
         if (email.isEmpty() || password.isEmpty()) {
-            // Menampilkan toast dengan error jika salah satu input kosong
             Toast.makeText(this, "Email dan Password tidak boleh kosong", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Periksa apakah email dan password cocok dengan data yang ada di Firestore
         db.collection("users")
             .whereEqualTo("email", email)
             .whereEqualTo("password", password)
@@ -58,18 +55,15 @@ class LoginActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 if (!documents.isEmpty) {
                     for (document in documents) {
-                        // Gunakan Firebase Document ID sebagai userId
-                        val userId = document.id // ID dokumen Firestore
+                        val userId = document.id
                         val username = document.getString("name") ?: "Unknown"
 
-                        // Tampilkan toast jika login berhasil
                         Toast.makeText(
                             this,
                             "Login Successful! Hello! $username",
                             Toast.LENGTH_SHORT
                         ).show()
 
-                        // Menyimpan data user ke SharedPreferences
                         val sharedPreferences = getSharedPreferences("userData", MODE_PRIVATE)
                         val editor = sharedPreferences.edit()
                         editor.putString("userId", userId)
@@ -80,12 +74,10 @@ class LoginActivity : AppCompatActivity() {
                         finish()
                     }
                 } else {
-                    // Jika email atau password salah
                     Toast.makeText(this, "Email or Password is Incorrect", Toast.LENGTH_SHORT).show()
                 }
             }
             .addOnFailureListener { exception ->
-                // Menangani kesalahan saat mengakses Firestore
                 Toast.makeText(this, "Error: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
