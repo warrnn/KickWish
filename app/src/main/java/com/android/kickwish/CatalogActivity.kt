@@ -33,6 +33,8 @@ class CatalogActivity : AppCompatActivity() {
 
         sneakerAdapter = SneakerAdapter(filteredSneakersList)
         recyclerView.adapter = sneakerAdapter
+
+
     }
 
     private fun setupToolBar() {

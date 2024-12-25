@@ -98,15 +98,12 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun checkWishlistStatus(button: Button) {
-        val currentUser = auth.currentUser
-        if (currentUser == null) {
-            button.text = "Login to Add to Wishlist"
-            return
-        }
+        val sharedPreferences = getSharedPreferences("userData", MODE_PRIVATE)
+        val userId = sharedPreferences.getString("userId", "user")
 
-        db.collection("wishlists")
-            .whereEqualTo("userId", currentUser.uid)
-            .whereEqualTo("name", intent.getStringExtra(EXTRA_SNEAKER_NAME))
+        db.collection("wishlist")
+            .whereEqualTo("userId", userId)
+            .whereEqualTo("sneaker_name", intent.getStringExtra(EXTRA_SNEAKER_NAME))
             .get()
             .addOnSuccessListener { documents ->
                 if (!documents.isEmpty) {
@@ -121,31 +118,28 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun addToWishlist(button: Button) {
-        val currentUser = auth.currentUser
-        if (currentUser == null) {
-            Toast.makeText(this, "Please login first", Toast.LENGTH_SHORT).show()
-            // TODO: Navigate to login screen
-            return
-        }
+        val sharedPreferences = getSharedPreferences("userData", MODE_PRIVATE)
+        val userId = sharedPreferences.getString("userId", "user")
 
         val sneakerName = intent.getStringExtra(EXTRA_SNEAKER_NAME)
         val sneakerPrice = intent.getDoubleExtra(EXTRA_SNEAKER_PRICE, 0.0)
         val sneakerImage = intent.getStringExtra(EXTRA_SNEAKER_IMAGE)
+        val sneakerDescription = intent.getStringExtra(EXTRA_SNEAKER_DESC)
 
         // Check if already in wishlist
-        db.collection("wishlists")
-            .whereEqualTo("userId", currentUser.uid)
-            .whereEqualTo("name", sneakerName)
+        db.collection("wishlist")
+            .whereEqualTo("userId", userId)
+            .whereEqualTo("sneaker_name", sneakerName)
             .get()
             .addOnSuccessListener { documents ->
                 if (documents.isEmpty) {
                     // Add to wishlist
                     val wishlistItem = hashMapOf(
-                        "userId" to currentUser.uid,
-                        "sneakerName" to sneakerName,
-                        "sneakerPrice" to sneakerPrice,
-                        "sneakerImage" to sneakerImage,
-                        "timestamp" to FieldValue.serverTimestamp()
+                        "userId" to userId,
+                        "sneaker_name" to sneakerName,
+                        "sneaker_price" to sneakerPrice,
+                        "sneaker_image" to sneakerImage,
+                        "sneaker_description" to sneakerDescription
                     )
 
                     db.collection("wishlist")
@@ -160,7 +154,7 @@ class DetailActivity : AppCompatActivity() {
                 } else {
                     // Remove from wishlist
                     val document = documents.documents[0]
-                    db.collection("wishlists").document(document.id)
+                    db.collection("wishlist").document(document.id)
                         .delete()
                         .addOnSuccessListener {
                             Toast.makeText(this, "Removed from wishlist", Toast.LENGTH_SHORT).show()

@@ -19,8 +19,8 @@ class WishlistAdapter(private val wishes: MutableList<Wish>) :
     private lateinit var onItemClickCall: OnItemClickCallBack
 
     interface OnItemClickCallBack {
-        fun deleteWish(data: Wish)
-        fun exploreWish(data: Wish)
+        fun deleteWish(wish: Wish)
+        fun exploreWish(wish: Wish)
     }
 
     fun setItemOnClickCallBack(onItemClickCallBack: OnItemClickCallBack) {
