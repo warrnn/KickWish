@@ -3,6 +3,7 @@ package com.android.kickwish
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.activity.enableEdgeToEdge
@@ -20,6 +21,10 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.ktx.firestore
 import java.util.Locale
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -46,14 +51,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         directionBTN = findViewById(R.id.fabDir)
         searchBar = findViewById(R.id.searchBar)
         setupToolBar()
-        initializeMaps()
 
-//        arrMaps = mutableListOf(
-//            Store(1, "Store 1", "This is store 1", "112.747009", "-7.330517"),
-//            Store(2, "Store 2", "This is store 2", "112.750916", "-7.344457"),
-//            Store(3, "Store 3", "This is store 3", "112.697112", "-7.344807"),
-//        )
-        mapAdapter.loadData(arrMaps)
+        initializeMaps()
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
         mapFragment?.getMapAsync(this)
@@ -81,6 +80,28 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
         })
+    }
+
+    fun getDataFromDatabase(db: FirebaseFirestore) {
+        db.collection("stores").get()
+            .addOnSuccessListener { result ->
+                arrMaps.clear()
+
+                for (document in result){
+                    val data = Store(
+                        document.data["name"].toString(),
+                        document.data["desc"].toString(),
+                        document.data["long"].toString(),
+                        document.data["lat"].toString()
+                    )
+                    arrMaps.add(data)
+                }
+
+                mapAdapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener {
+                Log.e("Error Firebase", it.message.toString())
+            }
     }
 
     private fun filterList(query: String?){
@@ -120,8 +141,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun initializeMaps() {
         _rvMap = findViewById(R.id.mapRecView)
-        mapAdapter = MapAdapter(arrMaps)
         _rvMap.layoutManager = LinearLayoutManager(this)
+
+        getDataFromDatabase(Firebase.firestore)
+        mapAdapter = MapAdapter(arrMaps)
         _rvMap.adapter = mapAdapter
     }
 
