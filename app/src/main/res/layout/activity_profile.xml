@@ -48,13 +48,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/dummy_profile" />
+                app:srcCompat="@drawable/profile_picture" />
 
             <TextView
                 android:id="@+id/TVnama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reyna Olivia Harrison"
+                android:text=""
                 android:fontFamily="@font/cabin"
                 android:textColor="@color/text"
                 android:textSize="28sp"
@@ -67,7 +67,7 @@
                 android:id="@+id/TVemail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="reynaolivia@gmail.com"
+                android:text=""
                 android:fontFamily="@font/cabin"
                 android:textColor="@color/secondary"
                 android:textSize="16sp"

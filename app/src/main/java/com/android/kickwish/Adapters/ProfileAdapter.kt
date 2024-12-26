@@ -49,6 +49,10 @@ RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder>(){
                 Locale("id", "ID")
             ).format(this_wish.sneaker.price)
         )
+
+        holder.itemView.setOnClickListener {
+            onItemClickCall.onItemClicked(this_wish)
+        }
     }
 
     override fun getItemCount(): Int {
