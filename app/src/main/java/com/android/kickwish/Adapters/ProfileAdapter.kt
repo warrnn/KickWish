@@ -16,7 +16,11 @@ RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder>(){
     private lateinit var onItemClickCall: OnItemClickCallBack
 
     interface OnItemClickCallBack {
+        fun onItemClicked(wish: Wish)
+    }
 
+    fun setOnItemClickCallBack(callback: OnItemClickCallBack) {
+        this.onItemClickCall = callback
     }
 
 
