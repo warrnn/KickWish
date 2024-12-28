@@ -32,6 +32,7 @@ import java.util.Locale
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var directionBTN: FloatingActionButton
+    private lateinit var addBTN: FloatingActionButton
     private lateinit var searchBar: SearchView
     private lateinit var mapAdapter: MapAdapter
     private lateinit var _rvMap: RecyclerView
@@ -51,11 +52,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             insets
         }
 
+        addBTN = findViewById(R.id.fabAdd)
         directionBTN = findViewById(R.id.fabDir)
         searchBar = findViewById(R.id.searchBar)
         val searchTextView = searchBar.findViewById<TextView>(androidx.appcompat.R.id.search_src_text)
         searchTextView.setTextColor(ContextCompat.getColor(this, R.color.primary))
         searchTextView.setHintTextColor(ContextCompat.getColor(this, R.color.secondary))
+
         setupToolBar()
         initializeMaps()
 

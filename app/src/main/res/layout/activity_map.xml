@@ -93,5 +93,17 @@
         android:layout_margin="16dp"
         app:maxImageSize="26dp"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primary"
+        app:tint="@color/background"
+        app:srcCompat="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="16dp"
+        app:maxImageSize="26dp"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
