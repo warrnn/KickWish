@@ -8,10 +8,12 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.kickwish.Models.Store
 import com.android.kickwish.Models.User
 import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 
 class AddStore : AppCompatActivity() {
     private lateinit var db: Firebase
@@ -28,6 +30,23 @@ class AddStore : AppCompatActivity() {
 
         initializeAddStore()
 
+        _btnAdd.setOnClickListener {
+            val newStore = Store(
+                _etName.text.toString(),
+                _etDesc.text.toString(),
+                _etLong.text.toString(),
+                _etLat.text.toString()
+            )
+
+            if (newStore.name.isEmpty() || newStore.desc.isEmpty() || newStore.long.isEmpty() || newStore.lat.isEmpty()) {
+                Toast.makeText(this, "Nama, Deskripsi, Longitude, atau Latitude tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            db.firestore.collection("store")
+                .add(newStore)
+            // lanjut sini do :)
+        }
     }
 
     fun initializeAddStore() {
