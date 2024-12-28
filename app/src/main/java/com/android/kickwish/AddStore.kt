@@ -45,7 +45,17 @@ class AddStore : AppCompatActivity() {
 
             db.firestore.collection("store")
                 .add(newStore)
-            // lanjut sini do :)
+                .addOnSuccessListener { documentReference ->
+                    Log.d(TAG, "Store added with ID: ${documentReference.id}")
+                    Toast.makeText(this, "Store successfully added!", Toast.LENGTH_SHORT).show()
+                    clearFields()
+                    // Optionally navigate back or to another screen
+                    // finish()
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error adding store", e)
+                    Toast.makeText(this, "Failed to add store: ${e.message}", Toast.LENGTH_LONG).show()
+                }
         }
     }
 
@@ -56,5 +66,16 @@ class AddStore : AppCompatActivity() {
         this._etLong = findViewById(R.id.etLongitude)
         this._etLat = findViewById(R.id.etLat)
         this._btnAdd = findViewById(R.id.btnAdd)
+    }
+
+    private fun clearFields() {
+        _etName.text.clear()
+        _etDesc.text.clear()
+        _etLong.text.clear()
+        _etLat.text.clear()
+    }
+
+    companion object {
+        private const val TAG = "AddStore"
     }
 }
