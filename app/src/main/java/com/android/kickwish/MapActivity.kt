@@ -88,6 +88,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
         })
+
+        addBTN.setOnClickListener {
+            startActivity(
+                Intent(this@MapActivity, AddStore::class.java)
+            )
+        }
     }
 
     fun getDataFromDatabase(db: FirebaseFirestore) {

@@ -49,7 +49,6 @@ class AddStore : AppCompatActivity() {
                     Log.d(TAG, "Store added with ID: ${documentReference.id}")
                     Toast.makeText(this, "Store successfully added!", Toast.LENGTH_SHORT).show()
                     clearFields()
-                    // Optionally navigate back or to another screen
                     // finish()
                 }
                 .addOnFailureListener { e ->
