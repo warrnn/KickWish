@@ -43,13 +43,16 @@ class AddStore : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            db.firestore.collection("store")
+            db.firestore.collection("stores")
                 .add(newStore)
                 .addOnSuccessListener { documentReference ->
                     Log.d(TAG, "Store added with ID: ${documentReference.id}")
                     Toast.makeText(this, "Store successfully added!", Toast.LENGTH_SHORT).show()
                     clearFields()
                     // finish()
+                    startActivity(
+                        Intent(this@AddStore, MapActivity::class.java)
+                    )
                 }
                 .addOnFailureListener { e ->
                     Log.w(TAG, "Error adding store", e)
